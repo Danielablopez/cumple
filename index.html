@@ -8,11 +8,14 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
 
     <!-- Open Graph meta tags para WhatsApp -->
-    <meta property="og:title" content="🎉 Invitación de Cumpleaños 🎂">
+    <meta property="og:title" content="🎉 Invitación de Cumpleaños de Elena 🎂">
     <meta property="og:description" content="¡Haz clic para ver la invitación especial de mi cumpleaños! 🎊">
     <meta property="og:image" content="https://danielablopez.github.io/cumple/imagenes/preview.jpg">
     <meta property="og:url" content="https://danielablopez.github.io/cumple/">
     <meta property="og:type" content="website">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <style>
         body {
@@ -88,7 +91,7 @@
     </style>
 </head>
 
-<body onload="lanzarConfeti()">
+<body onload="lanzarConfeti();">
 
     <div class="background"></div>
 
@@ -107,7 +110,7 @@
     </div>
 
     <!-- Audio solucionado -->
-    <audio id="audio" muted>
+    <audio id="audio">
         <source src="imagenes/capibara-song.mp3" type="audio/mp3">
         Tu navegador no soporta la reproducción de audio.
     </audio>
@@ -119,22 +122,31 @@
                 spread: 70,
                 origin: { y: 0.6 }
             });
+
+            let audio = document.getElementById("audio");
+            audio.play().catch(error => {
+                console.log("El navegador bloqueó la reproducción automática. Se requiere interacción.");
+            });
         }
 
         function confirmarAsistencia() {
             const mensaje = "Hola, confirmo mi asistencia a la fiesta de cumpleaños.";
             const numero = "5492477582423";
             window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, '_blank');
-        }
-
-        // Solución para el audio
-        window.onload = function () {
+            
             let audio = document.getElementById("audio");
-            audio.muted = false;
             audio.play().catch(error => {
                 console.log("El navegador bloqueó la reproducción automática. Se requiere interacción.");
             });
-        };
+        }
+
+        // Solución para el audio
+        document.querySelector('button').addEventListener('click', function() {
+            let audio = document.getElementById("audio");
+            audio.play().catch(error => {
+                console.log("El navegador bloqueó la reproducción automática. Se requiere interacción.");
+            });
+        });
     </script>
 
 </body>
